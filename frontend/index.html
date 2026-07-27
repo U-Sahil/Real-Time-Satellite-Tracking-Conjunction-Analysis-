@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbital Watch — Satellite Tracking & Conjunction Screening</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div id="brand"><span class="dot"></span> ORBITAL WATCH</div>
+      <div id="status-line">INITIALIZING…</div>
+      <div id="auth-area">
+        <span id="user-label" style="display:none; font-size:12.5px; color: var(--text-mid);"></span>
+        <button class="btn" id="btn-login">Log in</button>
+        <button class="btn btn-primary" id="btn-register">Create account</button>
+        <button class="btn btn-danger-outline" id="btn-logout" style="display:none;">Log out</button>
+      </div>
+    </header>
+
+    <div id="main">
+      <aside class="panel" id="left-panel">
+        <div class="panel-header">
+          <div class="eyebrow">Catalog</div>
+          <h2>Tracked objects</h2>
+        </div>
+        <input id="sat-search" type="text" placeholder="Search by name…" />
+        <div class="panel-body" id="sat-list"></div>
+
+        <div id="location-panel">
+          <div class="eyebrow" style="font-family:var(--font-mono);font-size:10px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;">Track from your location</div>
+          <div class="row">
+            <input id="city-input" type="text" placeholder="Enter your city…" />
+            <button class="btn btn-small" id="btn-use-location">📍</button>
+          </div>
+          <button class="btn btn-primary btn-small" id="btn-find-pass" style="width:100%; margin-top:8px;">Next pass over me</button>
+          <div id="location-status"></div>
+        </div>
+      </aside>
+
+      <!-- CENTER: 3D globe -->
+      <main id="globe-container">
+        <canvas id="globe-canvas"></canvas>
+        <div id="globe-hud">
+          <div><span class="label">OBJECTS TRACKED:</span> <span id="hud-count">—</span></div>
+          <div><span class="label">SELECTED:</span> <span id="hud-selected">none</span></div>
+          <div><span class="label">SCREENING RADIUS:</span> <span id="hud-threshold">25 km</span></div>
+        </div>
+        <div id="globe-legend">
+          <span><i style="background:#ff4d4d;"></i> Catalog object</span>
+          <span><i style="background:#ffa63c;"></i> Saved satellite</span>
+          <span><i style="background:#ffc86b;"></i> Selected satellite</span>
+          <span><i style="background:#ff5f5f;"></i> Close approach</span>
+        </div>
+      </main>
+
+      <!-- RIGHT: telemetry + conjunctions -->
+      <aside class="panel" id="right-panel">
+        <div class="panel-header">
+          <div class="eyebrow">Telemetry</div>
+          <h2 id="telemetry-title">No satellite selected</h2>
+        </div>
+        <div id="telemetry-body"></div>
+
+        <div class="section-label">Close approaches (live)</div>
+        <div class="panel-body" id="conjunction-list" style="flex: none; max-height: 260px;"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Login / Register modal -->
+  <div id="modal-backdrop">
+    <div id="modal">
+      <h3 id="modal-title">Log in</h3>
+      <div class="modal-error" id="modal-error"></div>
+      <input id="modal-username" type="text" placeholder="Username" />
+      <input id="modal-email" type="email" placeholder="Email" style="display:none;" />
+      <input id="modal-password" type="password" placeholder="Password" />
+      <button class="btn btn-primary" id="modal-submit" style="width:100%;">Log in</button>
+      <div class="modal-switch" id="modal-switch">Need an account? Create one</div>
+      <div class="modal-switch" id="modal-close" style="margin-top:4px;">Cancel</div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/globe.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
