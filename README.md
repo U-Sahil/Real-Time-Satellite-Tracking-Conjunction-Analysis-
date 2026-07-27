@@ -1,12 +1,6 @@
 # Real-Time Satellite Tracking & Conjunction Analysis
 
-> **v2 update:** real photographic Earth texture (not a wireframe), a
-> point-cloud "swarm" view of the whole catalog like a real tracking site,
-> smooth continuously-moving markers (client-side interpolation instead of
-> jumpy polling), a "next pass over your city" feature backed by real
-> geocoding, and a fix so permanently docked spacecraft (ISS modules,
-> docked Soyuz/Progress/Cygnus) no longer show up as meaningless "0.00 km"
-> conjunctions.
+
 
 Live satellite position tracking (SGP4 orbital propagation) and close-approach
 detection between orbiting objects (KD-tree spatial screening), over the
